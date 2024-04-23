@@ -1,0 +1,92 @@
+/* -------------------------------------------------------*
+9 * FATEC-São Caetano do Sul Estrutura de Dados     *
+10 *                                     Avaliação N1 - Parte I       *
+11 * Objetivo: Controlar Estoque de produtos            *
+12 *                                                                              *
+13 * Autores: Apollo Henrique Moreira   
+14 *                                                   Data:16/04/2024*
+15 *------------------------------------------------------*
+16 */
+
+#include <math.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_SIZE 100
+
+typedef struct {
+  double items[MAX_SIZE];
+  int top;
+} Pilha;
+
+void inicializarPilha(Pilha *pilha) { pilha->top = -1; }
+
+bool estaVazia(Pilha *pilha) { return (pilha->top == -1); }
+
+bool estaCheia(Pilha *pilha) { return (pilha->top == MAX_SIZE - 1); }
+
+void empilhar(Pilha *pilha, double valor) {
+  if (estaCheia(pilha)) {
+    printf("Erro: Pilha cheia.\n");
+    exit(EXIT_FAILURE);
+  }
+  pilha->items[++(pilha->top)] = valor;
+}
+
+double desempilhar(Pilha *pilha) {
+  if (estaVazia(pilha)) {
+    printf("Erro: Pilha vazia.\n");
+    exit(EXIT_FAILURE);
+  }
+  return pilha->items[(pilha->top)--];
+}
+
+double operacao(double op1, double op2, char operador) {
+  switch (operador) {
+  case '+':
+    return op1 + op2;
+  case '-':
+    return op1 - op2;
+  case '*':
+    return op1 * op2;
+  case '/':
+    if (op2 == 0) {
+      printf("Erro: Divisão por zero.\n");
+      exit(EXIT_FAILURE);
+    }
+    return op1 / op2;
+  default:
+    printf("Erro: Operador inválido.\n");
+    exit(EXIT_FAILURE);
+  }
+}
+
+int main() {
+  Pilha pilha;
+  inicializarPilha(&pilha);
+
+  char entrada[MAX_SIZE];
+  printf("Digite a expressão no formato RPN (use espaço como separador): ");
+  fgets(entrada, sizeof(entrada), stdin);
+
+  char *token = strtok(entrada, " ");
+  while (token != NULL) {
+    if (isdigit(token[0]) || (token[0] == '-' && isdigit(token[1]))) {
+
+      empilhar(&pilha, atof(token));
+    } else {
+
+      double op2 = desempilhar(&pilha);
+      double op1 = desempilhar(&pilha);
+      double resultado = operacao(op1, op2, token[0]);
+      empilhar(&pilha, resultado);
+    }
+    token = strtok(NULL, " ");
+  }
+
+  double resultadoFinal = desempilhar(&pilha);
+  printf("Resultado: %.2f\n", resultadoFinal);
+
+  return 0;
+}
