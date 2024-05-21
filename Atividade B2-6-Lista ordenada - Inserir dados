@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+#define SIZE 5
+
+void insertInArray(int array[], int *size, int value) {
+  int i, position;
+
+  for (i = 0; i < *size; i++) {
+    if (array[i] > value) {
+      position = i;
+      break;
+    }
+  }
+
+  for (i = *size; i > position; i--) {
+    array[i] = array[i - 1];
+  }
+
+  array[position] = value;
+  (*size)++;
+}
+
+int main() {
+  int array[SIZE] = {10, 25, 40, 80};
+  int size = SIZE;
+  int newValue = 30;
+  int i;
+
+  printf("Array original:\n");
+  for (i = 0; i < size; i++) {
+    printf("%d ", array[i]);
+  }
+  printf("\n");
+
+  insertInArray(array, &size, newValue);
+
+  printf("Array após inserção de %d:\n", newValue);
+  for (i = 0; i < size; i++) {
+    printf("%d ", array[i]);
+  }
+  printf("\n");
+
+  return 0;
+}
