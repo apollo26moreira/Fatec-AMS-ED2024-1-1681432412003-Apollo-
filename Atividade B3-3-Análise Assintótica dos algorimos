@@ -1,5 +1,11 @@
-// Apollo Henrique Moreira RA: 1681432412003 
-
+/*------------------------------------------------------------------------*/
+/*   FATEC-São Caetano do Sul                 Estrutura de Dados          */
+/*                          Apollo Henrique Moreira                       */
+/*             Objetivo: Busca Binária                                    */
+/*             Paradigama: - programação Estruturada                      */
+/*                                                                        */
+/*                                                         Data:09/09/2024*/
+/*-------------------------------------------------------------------------*/
 
 // busca linear linguagem C
 #include <stdio.h>
