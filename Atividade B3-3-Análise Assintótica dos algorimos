@@ -1,0 +1,52 @@
+// Apollo Henrique Moreira RA: 1681432412003 //
+
+
+// busca linear
+#include <stdio.h>
+
+int busca_linear(int arr[], int n, int alvo) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == alvo) {
+            return i; 
+        }
+    }
+    return -1;
+}
+
+
+
+
+// busca linear em ordem
+int busca_linear_ordenada(int arr[], int n, int alvo) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] > alvo) {
+            return -1; // A lista está ordenada, então se encontramos um elemento maior, o alvo não está na lista
+        }
+        if (arr[i] == alvo) {
+            return i; // Elemento encontrado
+        }
+    }
+    return -1; // Elemento não encontrado
+}
+
+
+
+// busca binária
+int busca_binaria(int arr[], int n, int alvo) {
+    int esquerda = 0;
+    int direita = n - 1;
+    
+    while (esquerda <= direita) {
+        int meio = esquerda + (direita - esquerda) / 2;
+        
+        if (arr[meio] == alvo) {
+            return meio; // Elemento encontrado
+        }
+        if (arr[meio] < alvo) {
+            esquerda = meio + 1;
+        } else {
+            direita = meio - 1;
+        }
+    }
+    return -1; // Elemento não encontrado
+}
