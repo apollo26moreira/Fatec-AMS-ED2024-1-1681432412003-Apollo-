@@ -1,7 +1,7 @@
-// Apollo Henrique Moreira RA: 1681432412003 //
+// Apollo Henrique Moreira RA: 1681432412003 
 
 
-// busca linear
+// busca linear linguagem C
 #include <stdio.h>
 
 int busca_linear(int arr[], int n, int alvo) {
@@ -16,7 +16,7 @@ int busca_linear(int arr[], int n, int alvo) {
 
 
 
-// busca linear em ordem
+// busca linear em ordem linguagem C
 int busca_linear_ordenada(int arr[], int n, int alvo) {
     for (int i = 0; i < n; i++) {
         if (arr[i] > alvo) {
@@ -31,7 +31,7 @@ int busca_linear_ordenada(int arr[], int n, int alvo) {
 
 
 
-// busca binária
+// busca binária linguagem C
 int busca_binaria(int arr[], int n, int alvo) {
     int esquerda = 0;
     int direita = n - 1;
@@ -50,3 +50,27 @@ int busca_binaria(int arr[], int n, int alvo) {
     }
     return -1; // Elemento não encontrado
 }
+
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Tamanhos das entradas
+n = np.arange(1, 1000, 10)
+
+# Tempo de execução
+tempo_linear = n
+tempo_binario = np.log2(n)
+
+plt.figure(figsize=(10, 6))
+
+# Gráficos
+plt.plot(n, tempo_linear, label='Busca Linear', color='blue')
+plt.plot(n, tempo_binario, label='Busca Binária', color='red')
+plt.xlabel('Tamanho da Entrada (n)')
+plt.ylabel('Tempo de Execução')
+plt.title('Comparação de Algoritmos de Busca')
+plt.legend()
+plt.grid(True)
+plt.show()
