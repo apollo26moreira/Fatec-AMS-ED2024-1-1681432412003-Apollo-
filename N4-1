@@ -1,0 +1,60 @@
+#include <stdio.h>
+
+// Função otimizada para realizar o Bubble Sort
+void bubbleSort(int vetor[], int tamanho) {
+    int indiceExterno, indiceInterno, auxiliar;
+    int trocado;
+
+    for (indiceExterno = 0; indiceExterno < tamanho - 1; indiceExterno++) {
+        trocado = 0; // Variável para verificar se houve troca
+
+        // Itera sobre os elementos do array
+        for (indiceInterno = 0; indiceInterno < tamanho - indiceExterno - 1; indiceInterno++) {
+            if (vetor[indiceInterno] > vetor[indiceInterno + 1]) {
+                // Troca os elementos se estiverem fora de ordem
+                auxiliar = vetor[indiceInterno];
+                vetor[indiceInterno] = vetor[indiceInterno + 1];
+                vetor[indiceInterno + 1] = auxiliar;
+                trocado = 1; // Marca que houve troca
+            }
+        }
+
+        // Se não houve troca, o array já está ordenado
+        if (!trocado)
+            break;
+    }
+}
+
+int main() {
+    int quantidade, indice;
+
+    // Solicita a quantidade de números
+    printf("Digite a quantidade de numeros: ");
+    scanf("%d", &quantidade);
+
+    int numeros[quantidade]; // Define o array com tamanho "quantidade"
+
+    // Entrada dos números no array
+    for (indice = 0; indice < quantidade; indice++) {
+        printf("Digite o numero %d: ", indice + 1);
+        scanf("%d", &numeros[indice]);
+    }
+
+    // Mostra o array original
+    printf("\nArray original: ");
+    for (indice = 0; indice < quantidade; indice++) {
+        printf("%d ", numeros[indice]);
+    }
+
+    // Chama a função Bubble Sort para ordenar o array
+    bubbleSort(numeros, quantidade);
+
+    // Mostra o array ordenado
+    printf("\nArray ordenado: ");
+    for (indice = 0; indice < quantidade; indice++) {
+        printf("%d ", numeros[indice]);
+    }
+
+    printf("\n");
+    return 0;
+}
