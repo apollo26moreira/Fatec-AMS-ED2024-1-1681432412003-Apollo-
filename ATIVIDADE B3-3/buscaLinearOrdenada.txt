@@ -1,3 +1,12 @@
+/*------------------------------------------------------------------------*/
+/*   FATEC-São Caetano do Sul                 Estrutura de Dados          */
+/*                          Apollo Henrique Moreira                       */
+/*             Objetivo: Busca Binária                                    */
+/*             Paradigama: - programação Estruturada                      */
+/*                                                                        */
+/*                                                         Data:09/09/2024*/
+/*-------------------------------------------------------------------------*/
+
 int busca_linear_ordenada(int arr[], int n, int alvo) {
     for (int i = 0; i < n; i++) {
         if (arr[i] > alvo) {
